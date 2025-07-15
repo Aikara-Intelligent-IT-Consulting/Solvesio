@@ -13,12 +13,16 @@ return new class extends Migration
     {
         Schema::create('project_files', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('project_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('project_id')->constrained('active_projects')->onDelete('cascade');
+            $table->foreignId('uploaded_by')->constrained('users')->onDelete('cascade');
             $table->string('file_name');
             $table->string('file_path');
-            $table->enum('type', ['draft', 'final', 'asset'])->default('draft');
+            $table->string('file_type')->nullable();
+            $table->integer('file_size')->nullable();
+            $table->string('category')->default('others')->comment('brief, design, final_delivery, others');
+            $table->text('description')->nullable();
             $table->timestamps();
-        });        
+        });
     }
 
     /**
@@ -26,6 +30,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        //
         Schema::dropIfExists('project_files');
     }
 };

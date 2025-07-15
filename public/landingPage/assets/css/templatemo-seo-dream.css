@@ -1380,6 +1380,11 @@ Portfolio
 .our-portfolio {
   padding-top: 100px;
   overflow: hidden;
+  
+}
+
+.team-bg{
+  background-color: #33ccc5;
 }
 
 .our-portfolio .container-fluid {
@@ -1446,7 +1451,7 @@ Portfolio
   display: inline-block!important;
   position: absolute;
   top: -117px;
-  right: 15%;
+  right: 20%;
   max-width: 1320px;
 }
 
@@ -1463,7 +1468,7 @@ Portfolio
   font-size: 30px;
   border: 2px solid #eee;
   border-radius: 50%;
-  color: #ddd;
+  color: #d6d5d2;
   transition: all 0.5s;
 }
 

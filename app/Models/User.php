@@ -31,6 +31,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
+        'phone',
+        'avatar',
+        'is_active',
     ];
 
     /**
@@ -65,5 +69,41 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    protected $casts = [
+        'is_active' => 'boolean',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
+
+    public function client()
+    {
+        return $this->hasOne(Client::class);
+    }
+
+    public function projectNegotiations()
+    {
+        return $this->hasMany(ProjectNegotiation::class, 'sender_id');
+    }
+
+    public function activeProjects()
+    {
+        return $this->hasMany(ActiveProject::class, 'assigned_to');
+    }
+
+    public function projectUpdates()
+    {
+        return $this->hasMany(ProjectUpdate::class, 'updated_by');
+    }
+
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class);
+    }
+
+    public function projectFiles()
+    {
+        return $this->hasMany(ProjectFile::class, 'uploaded_by');
     }
 }

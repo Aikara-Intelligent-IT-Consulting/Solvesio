@@ -11,13 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
+        //
         Schema::create('project_updates', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('project_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('project_id')->constrained('active_projects')->onDelete('cascade');
+            $table->foreignId('updated_by')->constrained('users')->onDelete('cascade');
             $table->string('title');
             $table->text('description');
+            $table->integer('progress_percentage')->nullable();
+            $table->string('attachment_path')->nullable();
             $table->timestamps();
-        });        
+        });
     }
 
     /**
@@ -25,6 +29,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        //
         Schema::dropIfExists('project_updates');
     }
 };
