@@ -12,12 +12,12 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        return view('admin/dashboard');
     })->name('dashboard');
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/project-offer', function () {
+        return view('admin/projectOffer');
+    })->name('project-offer');
+    Route::get('/client-dashboard', function () {
+        return view('admin/clientDashboard');
+    })->name('client-dashboard');
 });

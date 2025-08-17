@@ -314,7 +314,6 @@ https://templatemo.com/tm-563-seo-dream
                         template ZIP file on any Free CSS collection websites. You may contact us for more information.
                         Thank you.</p>
                     <div class="main-green-button"><a href="#">Discover company</a></div>
-
                 </div>
             </div>
         </div>
