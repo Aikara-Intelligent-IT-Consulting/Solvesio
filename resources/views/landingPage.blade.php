@@ -833,6 +833,7 @@ https://templatemo.com/tm-563-seo-dream
     <!-- Scripts -->
     <script src="{{ asset('landingPage/vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('landingPage/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script> --}}
     <script src="{{ asset('landingPage/assets/js/owl-carousel.js') }}"></script>
     <script src="{{ asset('landingPage/assets/js/animation.js') }}"></script>
     <script src="{{ asset('landingPage/assets/js/imagesloaded.js') }}"></script>
