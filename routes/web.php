@@ -21,3 +21,7 @@ Route::middleware([
         return view('admin/clientDashboard');
     })->name('client-dashboard');
 });
+
+Route::get('{any}', function () {
+    return view('app'); // view kamu yang ada <div id="root"></div>
+})->where('any', '.*');
