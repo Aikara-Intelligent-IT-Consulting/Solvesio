@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 const AllProjects: React.FC = () => {
     const [activeSection, setActiveSection] = useState('projects');
     const [activeFilter, setActiveFilter] = useState('all');
+    const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
     const projects = [
         {
@@ -219,14 +220,12 @@ const AllProjects: React.FC = () => {
 
                                     {/* Overlay Buttons */}
                                     <div className="absolute top-4 right-4 space-y-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                        <a
-                                            href={project.liveUrl}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
+                                        <button
+                                            onClick={() => setSelectedImage(project.image)}
                                             className="bg-white/90 hover:bg-white text-gray-700 p-2 rounded-full transition-colors duration-200 flex items-center justify-center"
                                         >
                                             <ExternalLink className="h-4 w-4" />
-                                        </a>
+                                        </button>
                                         <a
                                             href={project.githubUrl}
                                             target="_blank"
@@ -271,6 +270,27 @@ const AllProjects: React.FC = () => {
 
                         ))}
                     </div>
+                    {/* Modal for Image Preview */}
+                    {selectedImage && (
+                        <div
+                            className="fixed inset-0 bg-black/70 flex items-center justify-center z-50"
+                            onClick={() => setSelectedImage(null)}
+                        >
+                            <div className="relative max-w-4xl mx-auto p-4">
+                                <img
+                                    src={selectedImage}
+                                    alt="Preview"
+                                    className="rounded-lg max-h-[80vh] object-contain"
+                                />
+                                <button
+                                    onClick={() => setSelectedImage(null)}
+                                    className="absolute top-2 right-2 bg-white/80 hover:bg-white text-gray-800 w-10 h-10 flex items-center justify-center rounded-full shadow"
+                                >
+                                    ✕
+                                </button>
+                            </div>
+                        </div>
+                    )}
                 </section>
             </main>
 

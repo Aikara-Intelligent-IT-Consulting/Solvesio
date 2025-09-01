@@ -23,16 +23,21 @@ const Footer: React.FC = () => {
           {/* Brand Section */}
           <div className="lg:col-span-2">
             <div className="flex items-center space-x-2 mb-6">
-              <div className="bg-blue-500 p-2 rounded-lg">
-                <Code2 className="h-6 w-6 text-white" />
+              <div className="bg-gray-900 p-2 rounded-lg">
+                {/* <Code2 className="h-6 w-6 text-white" /> */}
+                <img
+                            src="/assets/img/Logo Solvesio.png"
+                            alt="Solvesio Logo"
+                            className="h-9 w-9 text-white"
+                        />
               </div>
               <span className="text-2xl font-bold">Solvesio</span>
             </div>
             <p className="text-gray-400 mb-6 leading-relaxed">
-              We create stunning, high-performance websites that drive results. 
+              We create stunning, high-performance websites that drive results.
               Your success is our mission, and we're here to make it happen.
             </p>
-            
+
             {/* Social Links */}
             <div className="flex space-x-4">
               {socialLinks.map((social, index) => (
@@ -74,7 +79,7 @@ const Footer: React.FC = () => {
             <p className="text-gray-400 text-sm">
               © {new Date().getFullYear()} Solvesio. All rights reserved.
             </p>
-            
+
             <div className="flex space-x-6 text-sm">
               <a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">
                 Privacy Policy
