@@ -200,11 +200,11 @@ export default function ServiceDetail() {
                             {/* CTA */}
                             <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
                                 <Link
-                                    to="/services"
+                                    to="/"
                                     className="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium shadow-md hover:from-blue-700 hover:to-indigo-700 transition"
                                 >
                                     <ArrowLeft className="w-4 h-4 mr-2" />
-                                    Kembali ke Services
+                                    Kembali ke Home
                                 </Link>
 
                                 <Link

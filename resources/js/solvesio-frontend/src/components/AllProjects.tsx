@@ -209,63 +209,69 @@ const AllProjects: React.FC = () => {
                                 key={project.id}
                                 className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
                             >
-                                {/* Project Image */}
-                                <div className="relative h-64 overflow-hidden">
-                                    <img
-                                        src={project.image}
-                                        alt={project.title}
-                                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                    />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                <Link to={`/projects/${index}`} className="block">
+                                    {/* Project Image */}
+                                    <div className="relative h-64 overflow-hidden">
+                                        <img
+                                            src={project.image}
+                                            alt={project.title}
+                                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
-                                    {/* Overlay Buttons */}
-                                    <div className="absolute top-4 right-4 space-y-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                        <button
-                                            onClick={() => setSelectedImage(project.image)}
-                                            className="bg-white/90 hover:bg-white text-gray-700 p-2 rounded-full transition-colors duration-200 flex items-center justify-center"
-                                        >
-                                            <ExternalLink className="h-4 w-4" />
-                                        </button>
-                                        <a
-                                            href={project.githubUrl}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="bg-white/90 hover:bg-white text-gray-700 p-2 rounded-full transition-colors duration-200 flex items-center justify-center"
-                                        >
-                                            <Github className="h-4 w-4" />
-                                        </a>
-                                    </div>
-                                </div>
-
-                                {/* Project Details */}
-                                <div className="p-6">
-                                    {/* Category */}
-                                    <div className="text-sm text-blue-500 font-medium mb-2">
-                                        {filters.find(f => f.id === project.category)?.label || project.category}
-                                    </div>
-
-                                    {/* Title */}
-                                    <h3 className="text-xl font-bold text-gray-900 mb-3">
-                                        {project.title}
-                                    </h3>
-
-                                    {/* Description */}
-                                    <p className="text-gray-600 mb-4 leading-relaxed">
-                                        {project.description}
-                                    </p>
-
-                                    {/* Tags */}
-                                    <div className="flex flex-wrap gap-2">
-                                        {project.tags.map((tag, i) => (
-                                            <span
-                                                key={i}
-                                                className="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full font-medium"
+                                        {/* Overlay Buttons */}
+                                        <div className="absolute top-4 right-4 space-y-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                            <button
+                                                onClick={(e) => {
+                                                    e.preventDefault();     // mencegah navigasi Link
+                                                    e.stopPropagation();    // menghentikan event bubbling ke parent
+                                                    setSelectedImage(project.image); // aksi custom-mu
+                                                }}
+                                                className="bg-white/90 hover:bg-white text-gray-700 p-2 rounded-full transition-colors duration-200 flex items-center justify-center"
                                             >
-                                                {tag}
-                                            </span>
-                                        ))}
+                                                <ExternalLink className="h-4 w-4" />
+                                            </button>
+                                            <a
+                                                href={project.githubUrl}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="bg-white/90 hover:bg-white text-gray-700 p-2 rounded-full transition-colors duration-200 flex items-center justify-center"
+                                            >
+                                                <Github className="h-4 w-4" />
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
+
+                                    {/* Project Details */}
+                                    <div className="p-6">
+                                        {/* Category */}
+                                        <div className="text-sm text-blue-500 font-medium mb-2">
+                                            {filters.find(f => f.id === project.category)?.label || project.category}
+                                        </div>
+
+                                        {/* Title */}
+                                        <h3 className="text-xl font-bold text-gray-900 mb-3">
+                                            {project.title}
+                                        </h3>
+
+                                        {/* Description */}
+                                        <p className="text-gray-600 mb-4 leading-relaxed">
+                                            {project.description}
+                                        </p>
+
+                                        {/* Tags */}
+                                        <div className="flex flex-wrap gap-2">
+                                            {project.tags.map((tag, i) => (
+                                                <span
+                                                    key={i}
+                                                    className="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full font-medium"
+                                                >
+                                                    {tag}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </Link>
                             </div>
 
                         ))}
