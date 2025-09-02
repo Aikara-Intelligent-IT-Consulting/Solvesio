@@ -82,29 +82,43 @@ export default function ServiceDetail() {
 
             <main>
                 {/* Hero Section */}
-                <section className="relative pt-32 pb-20 bg-gradient-to-br from-blue-600 via-indigo-500 to-purple-600 text-white overflow-hidden">
+                <section className="relative pt-32 pb-20 bg-gradient-to-br from-blue-50 via-white to-blue-100 overflow-hidden">
+                    {/* Background Pattern */}
                     <div className="absolute inset-0 w-full h-full bg-grid-pattern bg-grid opacity-10 pointer-events-none"></div>
 
                     <div className="relative z-10 max-w-5xl mx-auto px-4 text-center">
-                        <h1 className="text-4xl md:text-5xl font-extrabold mb-4 drop-shadow-lg">
-                            {service.title}
+                        <h1 className="text-4xl md:text-5xl font-extrabold mb-4">
+                            <span className="bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent">
+                                {service.title}
+                            </span>
                         </h1>
-                        <p className="text-lg max-w-2xl mx-auto mb-6 opacity-90">
+                        <p className="text-lg max-w-2xl mx-auto mb-6 text-gray-600">
                             Temukan detail lengkap mengenai layanan{" "}
-                            <span className="font-semibold">{service.title}</span> yang kami tawarkan.
+                            <span className="font-semibold text-gray-900">{service.title}</span> yang kami tawarkan.
                         </p>
+
                         {/* Breadcrumb */}
                         <nav className="flex justify-center">
-                            <ol className="flex items-center space-x-2 text-sm bg-white/20 px-4 py-2 rounded-full backdrop-blur-md">
+                            <ol className="flex items-center space-x-2 text-gray-500 bg-white/60 px-4 py-2 rounded-full backdrop-blur-md shadow-sm">
                                 <li>
-                                    <Link to="/" className="hover:underline">Home</Link>
+                                    <Link
+                                        to="/"
+                                        className="hover:text-blue-600 transition-colors duration-300"
+                                    >
+                                        Home
+                                    </Link>
                                 </li>
-                                <li>/</li>
+                                <li className="text-gray-400">/</li>
                                 <li>
-                                    <Link to="/services" className="hover:underline">Services</Link>
+                                    <Link
+                                        to="/services"
+                                        className="hover:text-blue-600 transition-colors duration-300"
+                                    >
+                                        Services
+                                    </Link>
                                 </li>
-                                <li>/</li>
-                                <li className="font-semibold text-white">{service.title}</li>
+                                <li className="text-gray-400">/</li>
+                                <li className="font-semibold text-gray-900">{service.title}</li>
                             </ol>
                         </nav>
                     </div>
