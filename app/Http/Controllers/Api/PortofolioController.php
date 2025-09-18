@@ -39,12 +39,20 @@ class PortofolioController extends Controller
                     'category' => $project->category->name,
                     'category_slug' => $project->category->slug,
                     'category_color' => $project->category->color,
-                    'image' => $project->image ? asset('storage/' . $project->image) : 'https://images.pexels.com/photos/34577/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=800',
+                    'image' => $project->image_url, // Menggunakan accessor
                     'project_url' => $project->project_url,
                     'technologies' => $project->technologies ?? [],
                     'featured' => $project->featured,
                     'completion_date' => $project->completion_date?->format('Y-m-d'),
                     'client_name' => $project->client_name,
+                    'images' => $project->images->map(function ($image) {
+                        return [
+                            'id' => $image->id,
+                            'url' => $image->image_url, // Menggunakan accessor
+                            'alt_text' => $image->alt_text,
+                            'is_primary' => $image->is_primary,
+                        ];
+                    }),
                 ];
             }),
         ]);
@@ -82,7 +90,7 @@ class PortofolioController extends Controller
                 'description' => $project->description,
                 'category' => $project->category->name,
                 'category_color' => $project->category->color,
-                'image' => $project->image ? asset('storage/' . $project->image) : null,
+                'image' => $project->image_url, // Menggunakan accessor
                 'project_url' => $project->project_url,
                 'technologies' => $project->technologies ?? [],
                 'featured' => $project->featured,
@@ -92,7 +100,7 @@ class PortofolioController extends Controller
                 'images' => $project->images->orderBy('sort_order')->map(function ($image) {
                     return [
                         'id' => $image->id,
-                        'url' => asset('storage/' . $image->image_path),
+                        'url' => $image->image_url, // Menggunakan accessor
                         'alt_text' => $image->alt_text,
                         'is_primary' => $image->is_primary,
                     ];
