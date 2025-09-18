@@ -10,8 +10,8 @@ use App\Filament\Resources\Projects\Tables\ProjectsTable;
 use App\Models\Project;
 use BackedEnum;
 use Filament\Resources\Resource;
+use UnitEnum;
 use Filament\Schemas\Schema;
-use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -19,10 +19,16 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class ProjectResource extends Resource
 {
     protected static ?string $model = Project::class;
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-briefcase';
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|UnitEnum|null $navigationGroup = 'Portfolio Management';
+    protected static ?int $navigationSort = 2;
 
-    protected static ?string $recordTitleAttribute = 'Project';
+    protected static ?string $recordTitleAttribute = 'title';
+
+    protected static ?string $modelLabel = 'Project';
+
+    protected static ?string $pluralModelLabel = 'Projects';
 
     public static function form(Schema $schema): Schema
     {
@@ -32,6 +38,19 @@ class ProjectResource extends Resource
     public static function table(Table $table): Table
     {
         return ProjectsTable::configure($table);
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
+
+    public static function getNavigationBadgeColor(): string|array|null
+    {
+        $count = static::getModel()::count();
+        if ($count > 20) return 'danger';
+        if ($count > 10) return 'warning';
+        return 'primary';
     }
 
     public static function getRelations(): array
@@ -50,9 +69,9 @@ class ProjectResource extends Resource
         ];
     }
 
-    public static function getRecordRouteBindingEloquentQuery(): Builder
+    public static function getEloquentQuery(): Builder
     {
-        return parent::getRecordRouteBindingEloquentQuery()
+        return parent::getEloquentQuery()
             ->withoutGlobalScopes([
                 SoftDeletingScope::class,
             ]);
